@@ -20,7 +20,6 @@ final readonly class PasswordController
     public function edit(Request $request): Response
     {
         return Inertia::render('settings/password', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => $request->session()->get('status'),
         ]);
     }

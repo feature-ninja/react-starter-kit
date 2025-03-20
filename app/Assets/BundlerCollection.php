@@ -20,16 +20,16 @@ final class BundlerCollection extends Collection
 
     public function install(bool $cleanInstall): self
     {
-        return $this->map->install($cleanInstall);
+        return $this->each->install($cleanInstall);
     }
 
     public function run(string $command, string ...$args): self
     {
-        return $this->map->run($command, ...$args);
+        return $this->each->run($command, ...$args);
     }
 
     public function wait(): self
     {
-        return $this->map->wait();
+        return $this->each->wait();
     }
 }
