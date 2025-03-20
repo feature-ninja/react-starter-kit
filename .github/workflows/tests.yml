@@ -42,7 +42,7 @@ jobs:
         run: php artisan key:generate
 
       - name: Build Assets
-        run: php artisan bundle:build
+        run: php artisan bundle build
 
       - name: Tests
         run: ./vendor/bin/phpunit
