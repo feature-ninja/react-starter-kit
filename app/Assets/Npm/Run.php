@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Process;
 final readonly class Run implements NpmCommand
 {
     /**
-     * @param list<string> $args
+     * @param  list<string>  $args
      */
     public function __construct(
         private bool $tty,
