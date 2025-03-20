@@ -22,7 +22,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 type ProfileForm = {
     name: string;
     email: string;
-}
+};
 
 export default function Profile({ status }: { status?: string }) {
     const { auth } = usePage<SharedData>().props;

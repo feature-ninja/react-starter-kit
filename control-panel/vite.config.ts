@@ -7,9 +7,9 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     plugins: [
         laravel({
-            publicDirectory: "../public",
-            buildDirectory: "build/control-panel",
-            hotFile: "../storage/hot/control-panel",
+            publicDirectory: '../public',
+            buildDirectory: 'build/control-panel',
+            hotFile: '../storage/hot/control-panel',
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
             ssr: 'resources/js/ssr.tsx',
             refresh: true,
