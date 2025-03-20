@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace ControlPanel\Http\Features\Settings\Password;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
