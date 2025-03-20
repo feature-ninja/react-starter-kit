@@ -17,7 +17,8 @@ Route::prefix('cp')
     ])
     ->group(function () {
         Route::middleware(['auth', 'verified'])->group(function () {
-            Route::get('cp.dashboard', DashboardController::class)->name('cp.dashboard');
+            Route::redirect('/', '/cp/dashboard');
+            Route::get('dashboard', DashboardController::class)->name('cp.dashboard');
         });
 
         require __DIR__.'/settings.php';
