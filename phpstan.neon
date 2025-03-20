@@ -6,8 +6,10 @@ parameters:
 
     paths:
         - app/
-        - control-panel/
-        - marketing/
+        - control-panel/routes/
+        - control-panel/src/
+        - marketing/routes/
+        - marketing/src/
 
     # Level 10 is the highest level
     level: 5
