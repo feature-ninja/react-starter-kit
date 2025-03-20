@@ -1,6 +1,9 @@
 {
     "private": true,
     "type": "module",
+    "scripts": {
+        "build": "php artisan bundle build"
+    },
     "devDependencies": {
         "concurrently": "^9.0.1"
     }
