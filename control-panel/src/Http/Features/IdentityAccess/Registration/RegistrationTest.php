@@ -30,7 +30,7 @@ final class RegistrationTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
-        $this->assertAuthenticated();
         $response->assertRedirect(route('cp.dashboard', absolute: false));
+        $this->assertAuthenticated();
     }
 }
