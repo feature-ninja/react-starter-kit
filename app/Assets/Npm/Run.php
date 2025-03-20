@@ -2,17 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Assets\Steps;
+namespace App\Assets\Npm;
 
-use App\Assets\BundlerStep;
+use App\Assets\NpmCommand;
 use App\Assets\RegisteredBundle;
 use Illuminate\Contracts\Process\InvokedProcess;
 use Illuminate\Support\Facades\Process;
 
-final readonly class Dev implements BundlerStep
+final readonly class Run implements NpmCommand
 {
+    /**
+     * @param list<string> $args
+     */
     public function __construct(
         private bool $tty,
+        private string $command,
+        private array $args,
     ) {}
 
     public function __invoke(RegisteredBundle $bundle): InvokedProcess
@@ -20,6 +25,6 @@ final readonly class Dev implements BundlerStep
         return Process::path($bundle->path)
             ->tty($this->tty)
             ->forever()
-            ->start('npm run dev');
+            ->start(['npm', 'run', $this->command, ...$this->args]);
     }
 }

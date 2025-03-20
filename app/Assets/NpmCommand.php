@@ -6,7 +6,7 @@ namespace App\Assets;
 
 use Illuminate\Contracts\Process\InvokedProcess;
 
-interface BundlerStep
+interface NpmCommand
 {
     public function __invoke(RegisteredBundle $bundle): InvokedProcess;
 }

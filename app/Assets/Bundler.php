@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Assets;
 
-use App\Assets\Steps\Build;
-use App\Assets\Steps\Dev;
-use App\Assets\Steps\Install;
+use App\Assets\Npm\Install;
+use App\Assets\Npm\Run;
 use Illuminate\Process\InvokedProcess;
 use Symfony\Component\Process\Process;
 
@@ -42,20 +41,15 @@ final class Bundler
 
     public function install(bool $clean): self
     {
-        return $this->run(new Install($this->tty, $clean));
+        return $this->execute(new Install($this->tty, $clean));
     }
 
-    public function build(): self
+    public function run(string $command, string ...$args): self
     {
-        return $this->run(new Build($this->tty));
+        return $this->execute(new Run($this->tty, $command, $args));
     }
 
-    public function dev(): self
-    {
-        return $this->run(new Dev($this->tty));
-    }
-
-    private function run(callable $action): self
+    private function execute(callable $action): self
     {
         $this->process = $action($this->bundle);
 

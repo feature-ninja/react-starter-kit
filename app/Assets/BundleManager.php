@@ -20,12 +20,13 @@ final class BundleManager
         $this->bundles = collect();
     }
 
-    /**
-     * @return Collection<string, RegisteredBundle>
-     */
-    public function all(): Collection
+    public function only(?array $only = null): BundlerCollection
     {
-        return $this->bundles->toBase();
+        return new BundlerCollection(
+            $this->bundles
+                ->only($only)
+                ->map(fn (RegisteredBundle $bundle) => Bundler::make($bundle)),
+        );
     }
 
     public function register(string $name, string $path): void

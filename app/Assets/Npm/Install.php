@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Assets\Steps;
+namespace App\Assets\Npm;
 
-use App\Assets\BundlerStep;
+use App\Assets\NpmCommand;
 use App\Assets\RegisteredBundle;
 use Illuminate\Process\InvokedProcess;
 use Illuminate\Support\Facades\Process;
 
-final readonly class Install implements BundlerStep
+final readonly class Install implements NpmCommand
 {
     public function __construct(
         private bool $tty,

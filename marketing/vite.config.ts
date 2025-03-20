@@ -13,7 +13,7 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
-    esbuild: {
-        jsx: 'automatic',
+    server: {
+        port: 5174,
     },
 });
