@@ -6,9 +6,11 @@ namespace ControlPanel;
 
 use App\Assets\Facades\Bundle;
 use App\Models\User;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +21,7 @@ final class ControlPanelServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->configureBundle();
         $this->configureViews();
+        $this->configureEmailVerification();
     }
 
     private function configureViews(): void
@@ -31,8 +34,10 @@ final class ControlPanelServiceProvider extends ServiceProvider
         Bundle::register('control-panel', __DIR__.'/../');
     }
 
-    public function register(): void
+    private function configureEmailVerification(): void
     {
+        Route::aliasMiddleware('verified', EnsureEmailIsVerified::redirectTo('cp.verification.notice'));
+
         VerifyEmail::createUrlUsing(function (User $user) {
             return URL::temporarySignedRoute(
                 'cp.verification.verify',
