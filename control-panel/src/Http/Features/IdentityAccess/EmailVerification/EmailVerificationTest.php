@@ -27,6 +27,16 @@ final class EmailVerificationTest extends TestCase
     }
 
     #[Test]
+    public function users_get_redirected_to_email_verification_screen_when_email_is_not_verified(): void
+    {
+        $user = User::factory()->unverified()->create();
+
+        $response = $this->actingAs($user)->post('/cp');
+
+        $response->assertRedirect(route('cp.verification.notice', absolute: false));
+    }
+
+    #[Test]
     public function email_can_be_verified(): void
     {
         $user = User::factory()->unverified()->create();
