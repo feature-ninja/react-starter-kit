@@ -10,6 +10,6 @@ final readonly class WelcomeController
 {
     public function __invoke(): View
     {
-        return view('marketing::welcome');
+        return view()->file(__DIR__.'/welcome.blade.php');
     }
 }
